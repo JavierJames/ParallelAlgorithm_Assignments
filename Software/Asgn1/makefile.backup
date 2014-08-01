@@ -1,0 +1,31 @@
+CC=g++
+CFLAGS=-c -Wall
+LFLAGS=
+LDFLAGS=
+INCS= -I
+LPATH=
+SRCS=pref_suf_c.cpp
+OBJS=$(SRCS:%.cpp=%.o)
+LIBS=
+EXEC=pref_suf_c
+CMDL= ./$(EXEC)
+
+all: clean $(SRCS) $(EXEC) run
+
+$(EXEC): $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC) $(LFLAGS) $(LDFLAGS)
+#	$(CC) $(LDFLAGS) $(OBJS) -o $@
+#	g++ pref_suf_c.cpp -o pref_suf_c 
+
+run: $(EXEC)
+	$(CMDL)
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+
+
+#.cpp.o: 
+#	$(CC) S(CFLAGS) $< -o $@
+
+clean: 
+	rm -rf  *o $(EXEC)
